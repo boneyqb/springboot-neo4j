@@ -1,0 +1,32 @@
+[
+	{
+		"node-id": "1",
+		"name" : "root",
+		"parent-node": "0"
+	},
+	{
+		"node-id": "2",
+		"name" : "a",
+		"parent-node": "1"
+	},
+	{
+		"node-id": "3",
+		"name" : "b",
+		"parent-node": "1"
+	},
+	{
+		"node-id": "4",
+		"name" : "c",
+		"parent-node": "2"
+	},
+	{
+		"node-id": "5",
+		"name" : "d",
+		"parent-node": "2"
+	},
+	{
+		"node-id": "6",
+		"name" : "e",
+		"parent-node": "5"
+	}
+]
