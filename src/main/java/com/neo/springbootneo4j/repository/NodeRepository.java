@@ -12,7 +12,18 @@ import com.neo.springbootneo4j.model.Node;
 @Repository
 public interface NodeRepository extends Neo4jRepository<Node, String>{
 
-	@Query ("Match(n:Node{nodeId:{nodeId}})<-[:PARENT]-(s:Node) return s")
+	@Query ("Match(n:Node{nodeId:{nodeId}})-[:CHILD]->(s:Node) return s")
 	Collection<Node> getAllChildren(@Param("nodeId") String nodeId);
+
+	@Query ("MATCH (n:Node {nodeId: {nodeId} } ), (r:Node {nodeId: {parentNode} }) CREATE (n)<-[:CHILD]-(r)")
+	void createRelationship(String nodeId, String parentNode);
+
+	@Query ( "MATCH (n:Node) WHERE n.nodeId = {childId} WITH n \r\n" + 
+			"MATCH (m:Node {nodeId: n.nodeId } )-[r:CHILD]-(p:Node {nodeId: n.parentNode} ) DELETE r\r\n" + 
+			"WITH n MATCH (n:Node {nodeId: n.nodeId }), (r:Node {nodeId: {newParentId} }) CREATE (n)<-[:CHILD]-(r) SET n.parentNode = r.nodeId" )
+	void updateParent(String childId, String newParentId);
+
+	@Query ("CREATE INDEX ON :Node(nodeId)")
+	void createIndexWithId();
 
 }

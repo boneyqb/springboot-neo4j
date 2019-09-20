@@ -2,7 +2,6 @@ package com.neo.springbootneo4j.model;
 
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Relationship;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -23,8 +22,7 @@ public class Node {
 	@SerializedName("parent-node")
 	private String parentNode;
 	
-	@Relationship( direction = Relationship.INCOMING, type = "PARENT")
-	private Node child;
+	private String height;
 	
 	public String getNodeId() {
 		return nodeId;
@@ -50,12 +48,12 @@ public class Node {
 		this.parentNode = parentNode;
 	}
 
-	public Node getChild() {
-		return child;
+	public String getHeight() {
+		return height;
 	}
 
-	public void setChild(Node child) {
-		this.child = child;
+	public void setHeight(String height) {
+		this.height = height;
 	}
 	
 }
