@@ -22,8 +22,6 @@ public class Node {
 	@SerializedName("parent-node")
 	private String parentNode;
 	
-	private String height;
-	
 	public String getNodeId() {
 		return nodeId;
 	}
@@ -48,12 +46,4 @@ public class Node {
 		this.parentNode = parentNode;
 	}
 
-	public String getHeight() {
-		return height;
-	}
-
-	public void setHeight(String height) {
-		this.height = height;
-	}
-	
 }

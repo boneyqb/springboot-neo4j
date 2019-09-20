@@ -1,9 +1,9 @@
 package com.neo.springbootneo4j.controller;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Collection;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -27,7 +27,7 @@ public class NodeController {
 	private NodeRepository nodeRepository;
 	
 	@GetMapping("/get-children/{nodeId}")
-	public Collection<Node> getAllChildren( @PathVariable String nodeId ) {
+	public Collection<Map<?,?>> getAllChildren( @PathVariable String nodeId ) {
 		return nodeRepository.getAllChildren(nodeId);
 	}
 
@@ -61,12 +61,17 @@ public class NodeController {
 
 				// Read data into object model
 				node = gson.fromJson(reader, Node.class);
+				
+				//Setting the parent node id of root node as 0
+				if ( !StringUtils.hasText(node.getParentNode()) ) {
+					node.setParentNode("0");
+				}
 
 				//persist node
 				nodeRepository.save(node);
 
 				//Checking if the node has parent
-				if ( StringUtils.hasText(node.getParentNode()) && !node.getParentNode().equals("0") ) {
+				if ( !node.getParentNode().equals("0") ) {
 
 					//Create relationship with the parent
 					nodeRepository.createRelationship(node.getNodeId(), node.getParentNode());
@@ -82,11 +87,11 @@ public class NodeController {
 
 		} catch (FileNotFoundException e) {
 
-			System.out.println("Json file not found");
+			return "Json file not found";
 
-		} catch (IOException e) {
+		} catch (Exception e) {
 
-			System.out.println("Exception occured.");
+			return "Please check the json file and try again.";
 
 		}
 		return "Successfully loaded.";
