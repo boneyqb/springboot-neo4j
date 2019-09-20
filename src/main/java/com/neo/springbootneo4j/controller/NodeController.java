@@ -51,8 +51,6 @@ public class NodeController {
 			//Reading huge JSON file in stream mode with GSON JsonReader
 			JsonReader reader = new JsonReader(new InputStreamReader(classLoader.getResourceAsStream("sample.json"), "UTF-8"));
 			
-			System.out.println("====> "+reader);
-
 			Gson gson = new GsonBuilder().create();
 
 			Node node = null;
