@@ -1,0 +1,24 @@
+
+## Overall Architecture
+
+This project is a Spring Boot Java application to load & retrieve json data in Tree struture.
+Neo4j is used as the database. Neo4j is one of the most popular graph database management system developed by Neo4j, Inc. 
+It is an ACID-compliant transactional database with native graph storage and processing.
+
+
+## Build & Deploy Process
+
+Either download the application or use git to clone the application:
+
+git clone git@github.com:boneyqb/springboot-neo4j.git
+
+
+#Loading the initial dataset
+
+You may notice that there is no data for you to interact with. 
+
+To fix this, hit the following endpoint from your browser or using curl:
+
+http://localhost:8085/node/load-json
+
+This will pre-load the Neo4j database with data stored in sample.json saved under /resources folder.
