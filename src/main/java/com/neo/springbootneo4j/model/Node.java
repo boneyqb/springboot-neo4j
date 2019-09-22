@@ -5,6 +5,7 @@ import org.neo4j.ogm.annotation.NodeEntity;
 
 import com.google.gson.annotations.SerializedName;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -15,8 +16,10 @@ public class Node {
 	
 	@Id
 	@SerializedName("node-id")
+	@ApiModelProperty (notes = "Id of the node")
 	private String nodeId;
 	
+	@ApiModelProperty (notes = "Name of node")
 	private String name;
 	
 	@SerializedName("parent-node")

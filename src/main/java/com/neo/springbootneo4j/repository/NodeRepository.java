@@ -30,4 +30,11 @@ public interface NodeRepository extends Neo4jRepository<Node, String>{
 	@Query ("CREATE INDEX ON :Node(nodeId)")
 	void createIndexWithId();
 
+	@Query ("Match(n:Node{nodeId:{nodeId}})-[:CHILD*]->(s:Node) WITH n,s\r\n" + 
+			"MATCH (r:Node) WHERE NOT (r)<-[:CHILD]-()\r\n" + 
+			"WITH n,r,s Match p=(a)-[:CHILD*]-(c)\r\n" + 
+			"where a.nodeId=r.nodeId and c.nodeId=s.nodeId\r\n" + 
+			"return s.nodeId AS nodeId,s.nodeId AS name,length(p) AS height,n AS parent,r AS root")
+	Collection<Map<?, ?>> getAllTree(String nodeId);
+
 }

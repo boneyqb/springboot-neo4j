@@ -19,22 +19,58 @@ import com.neo.springbootneo4j.SpringbootNeo4jApplication;
 import com.neo.springbootneo4j.model.Node;
 import com.neo.springbootneo4j.repository.NodeRepository;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+/**
+ * @author Boney Varghese
+ *
+ */
 @RestController
-@RequestMapping("/")
+@RequestMapping("/node")
+@Api (value = "Handles node operations for a tree structure")
 public class NodeController {
 
 	@Autowired
 	private NodeRepository nodeRepository;
 	
-	@GetMapping("/get-children/{nodeId}")
+	/**
+	 * This method will return the immediate child nodes for a nodeId
+	 * @param nodeId
+	 * @return Collection
+	 */
+	@ApiOperation (value = "Returns the immediate child nodes for a nodeId")
+	@GetMapping ("/get-children/{nodeId}")
 	public Collection<Map<?,?>> getAllChildren( @PathVariable String nodeId ) {
 		return nodeRepository.getAllChildren(nodeId);
 	}
 
-	@GetMapping("/update-parent/{childId}/{newParentId}")
+	/**
+	 * This method will update the parent node of a child
+	 * @param childId
+	 * @param newParentId
+	 * @return String
+	 */
+	@ApiOperation (value = "Updates the parent node of a child node")
+	@GetMapping ("/update-parent/{childId}/{newParentId}")
 	public String updateParent( @PathVariable String childId, @PathVariable String newParentId ) {
-		nodeRepository.updateParent( childId, newParentId );
-		return "Relationship successfully updated.";
+		try {
+			nodeRepository.updateParent( childId, newParentId );
+			return "Relationship successfully updated.";
+		} catch (Exception e) {
+			return "Please check the data, please try again.";
+		}
+	}
+	
+	/**
+	 * This method will return the child & sub child under a nodeId
+	 * @param nodeId
+	 * @return Collection
+	 */
+	@ApiOperation (value = "Returns the all the tree nodes under a nodeId")
+	@GetMapping("/get-whole-tree/{nodeId}")
+	public Collection<Map<?,?>> getAllTree( @PathVariable String nodeId ) {
+		return nodeRepository.getAllTree(nodeId);
 	}
 
 	
@@ -42,7 +78,8 @@ public class NodeController {
 	 * This method will load the Json file from resources
 	 * 
 	 */
-	@GetMapping("/load-json")
+	@ApiOperation (value = "Loads the json file from resources folder to the database")
+	@GetMapping ("/load-json")
 	public String loadJson() {
 		ClassLoader classLoader = new SpringbootNeo4jApplication().getClass().getClassLoader();
 
