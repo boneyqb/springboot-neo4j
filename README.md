@@ -24,7 +24,7 @@ docker-compose up
 
 Once the application is up and running the API details are available at http://localhost:8085/swagger-ui.html
 
-####Loading the initial dataset
+#### Loading the initial dataset
 
 You may notice that there is no data for you to interact with. 
 
