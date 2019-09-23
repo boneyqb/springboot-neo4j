@@ -5,6 +5,9 @@ This project is a Spring Boot Java application to load & retrieve json data in T
 Neo4j is used as the database. Neo4j is one of the most popular graph database management system developed by Neo4j, Inc. 
 It is an ACID-compliant transactional database with native graph storage and processing.
 
+The GSON's JsonReader is used in the project to read the huge Json file. The GSON JsonReader enables us to read a file as a stream.
+
+
 
 ## Build & Deploy Process
 
