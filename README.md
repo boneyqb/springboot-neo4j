@@ -40,4 +40,4 @@ The database is available at http://localhost:7474/
 
 ## Database View For Sample Data
 
-![](C:/Users/qbuser/Desktop/GraphDB.png)
+![](GraphDB.jpg)
