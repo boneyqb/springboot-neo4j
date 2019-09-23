@@ -14,6 +14,9 @@ The GSON's JsonReader is used in the project to read the huge Json file. The GSO
 Either download the application or use git to clone the application:
 git clone git@github.com:boneyqb/springboot-neo4j.git
 
+### Maven Build Command
+mvn clean install
+
 
 ### Build Docker Image
 
