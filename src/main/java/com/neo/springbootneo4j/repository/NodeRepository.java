@@ -34,7 +34,8 @@ public interface NodeRepository extends Neo4jRepository<Node, String>{
 			"MATCH (r:Node) WHERE NOT (r)<-[:CHILD]-()\r\n" + 
 			"WITH n,r,s Match p=(a)-[:CHILD*]-(c)\r\n" + 
 			"where a.nodeId=r.nodeId and c.nodeId=s.nodeId\r\n" + 
-			"return s.nodeId AS nodeId,s.nodeId AS name,length(p) AS height,n AS parent,r AS root")
+			"return s.nodeId AS nodeId,s.nodeId AS name,length(p) AS height,n AS parent,r AS root ORDER BY length(p) ASC\r\n" + 
+			"")
 	Collection<Map<?, ?>> getAllTree(String nodeId);
 
 }
