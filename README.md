@@ -16,11 +16,11 @@ git clone git@github.com:boneyqb/springboot-neo4j.git
 
 Run the below command to build the docker image: 
 
-docker build . -t springboot-neo4j
+##### docker build . -t springboot-neo4j
 
 * If this succeeds, run the command:
 
-docker-compose up
+##### docker-compose up
 
 Once the application is up and running the API details are available at http://localhost:8085/swagger-ui.html
 
@@ -34,6 +34,6 @@ http://localhost:8085/node/load-json
 
 This will pre-load the Neo4j database with data stored in sample.json saved under /resources folder.
 
-The database is available at http://localhost:7474/ 
-Username: neo4j
-Password: password
+The database is available at ##### http://localhost:7474/ 
+##### Username: neo4j
+##### Password: password
