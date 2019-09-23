@@ -37,3 +37,7 @@ This will pre-load the Neo4j database with data stored in sample.json saved unde
 The database is available at http://localhost:7474/ 
 ##### Username: neo4j
 ##### Password: password
+
+## Database View For Sample Data
+
+![](C:/Users/qbuser/Desktop/GraphDB.png)
